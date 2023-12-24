@@ -54,9 +54,7 @@ public class CustomerFormController {
         colOption.setCellValueFactory(new TreeItemPropertyValueFactory<>("deleteBtn"));
         loadCustomerTable();
 
-        tblCustomer.getSelectionModel().selectedItemProperty().addListener((ObservableValue, oldValue, newValue)->{
-            setData(newValue.getValue());
-        });
+
 
         txtCustSearch.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -69,6 +67,11 @@ public class CustomerFormController {
                     }
                 });
             }
+        });
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((ObservableValue, oldValue, newValue)->{
+
+                setData(newValue.getValue());
+
         });
     }
 

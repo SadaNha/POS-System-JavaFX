@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="dashBoardPane" prefHeight="724.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashBoardFormController">
    <children>
       <JFXButton layoutX="113.0" layoutY="107.0" onAction="#customerButtonOnAction" prefHeight="48.0" prefWidth="131.0" style="-fx-background-color: #27ae60;" text="Customer">
@@ -12,12 +11,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="113.0" layoutY="194.0" prefHeight="48.0" prefWidth="131.0" style="-fx-background-color: #27ae60;" text="Item">
+      <JFXButton layoutX="113.0" layoutY="194.0" onAction="#itemButtonOnAction" prefHeight="48.0" prefWidth="131.0" style="-fx-background-color: #27ae60;" text="Item">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="113.0" layoutY="279.0" prefHeight="48.0" prefWidth="143.0" style="-fx-background-color: #27ae60;" text="Place Order">
+      <JFXButton layoutX="113.0" layoutY="279.0" onAction="#placeOrderButtonOnAction" prefHeight="48.0" prefWidth="143.0" style="-fx-background-color: #27ae60;" text="Place Order">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

@@ -24,4 +24,31 @@ public class DashBoardFormController {
         }
         stage.show();
     }
+
+    public void itemButtonOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage)dashBoardPane.getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/ItemForm.fxml")))));
+            stage.setTitle("Customer Form");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+    }
+
+    public void placeOrderButtonOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage)dashBoardPane.getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/PlaceOrderForm.fxml")))));
+            stage.setTitle("Customer Form");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+    }
+
 }

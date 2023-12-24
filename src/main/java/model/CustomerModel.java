@@ -11,6 +11,6 @@ public interface CustomerModel {
     boolean updateCustomer(CustomerDto customerDto) throws SQLException, ClassNotFoundException;
     boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException;
     List<CustomerDto> allCustomer() throws SQLException, ClassNotFoundException;
-    CustomerDto searchCustomer(String id);
+    CustomerDto searchCustomer(String id) throws SQLException, ClassNotFoundException;
 }
 
