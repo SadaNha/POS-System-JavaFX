@@ -18,12 +18,12 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.stage.Stage;
-import model.CustomerModel;
-import model.ItemModel;
-import model.OrderModel;
-import model.impl.CustomerModelImpl;
-import model.impl.ItemModelImpl;
-import model.impl.OrderModelImpl;
+import dao.custom.CustomerDao;
+import dao.custom.ItemDao;
+import dao.custom.OrderDao;
+import dao.custom.impl.CustomerDaoImpl;
+import dao.custom.impl.ItemDaoImpl;
+import dao.custom.impl.OrderDaoImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -49,7 +49,7 @@ public class PlaceOrderFormController {
     public Label lblOrderId;
     public Label lblTotal;
 
-    private OrderModel orderModel = new OrderModelImpl();
+    private OrderDao orderDao = new OrderDaoImpl();
 
     private double total=0;
     private List<CustomerDto> customers;
@@ -57,8 +57,8 @@ public class PlaceOrderFormController {
 
     private ObservableList<OrderTm> tmList = FXCollections.observableArrayList();
 
-    private CustomerModel customerModel = new CustomerModelImpl();
-    private ItemModel itemModel = new ItemModelImpl();
+    private CustomerDao customerDao = new CustomerDaoImpl();
+    private ItemDao itemDao = new ItemDaoImpl();
 
     public void initialize(){
 
@@ -93,7 +93,7 @@ public class PlaceOrderFormController {
 
     private void loadItems() {
         try {
-            items = itemModel.allItems();
+            items = itemDao.allItems();
             ObservableList<String> list = FXCollections.observableArrayList();
             for (ItemDto dto: items) {
                 list.add(dto.getCode());
@@ -106,7 +106,7 @@ public class PlaceOrderFormController {
 
     private void loadCustomers() {
         try {
-            customers = customerModel.allCustomer();
+            customers = customerDao.allCustomer();
             ObservableList<String> list = FXCollections.observableArrayList();
             for (CustomerDto dto : customers) {
                 list.add(dto.getId());
@@ -119,7 +119,7 @@ public class PlaceOrderFormController {
 
     public void generateId(){
         try {
-            OrderDto dto = orderModel.lastOrder();
+            OrderDto dto = orderDao.lastOrder();
             if(dto!=null){
                 String lastOrderId = dto.getOrderId();
                 int number = Integer.parseInt(lastOrderId.split("[D]")[1]);
@@ -135,7 +135,7 @@ public class PlaceOrderFormController {
 
     public void addToCartOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
-        double amount = itemModel.getItem(cmbItemCode.getValue().toString()).getUnitPrice()*Integer.parseInt(txtQtyOnHand.getText());
+        double amount = itemDao.getItem(cmbItemCode.getValue().toString()).getUnitPrice()*Integer.parseInt(txtQtyOnHand.getText());
         JFXButton btn = new JFXButton("Delete");
         OrderTm orderTm = new OrderTm(
                 cmbItemCode.getValue().toString(),
@@ -183,7 +183,7 @@ public class PlaceOrderFormController {
             ));
         }
         if(! tmList.isEmpty()){
-            boolean isSaved = orderModel.saveOrder(new OrderDto(
+            boolean isSaved = orderDao.saveOrder(new OrderDto(
                             lblOrderId.getText(),
                             LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd")),
                             cmbCustId.getValue().toString(),

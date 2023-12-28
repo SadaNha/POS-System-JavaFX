@@ -19,10 +19,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.CustomerModel;
-import model.impl.CustomerModelImpl;
+import dao.custom.CustomerDao;
+import dao.custom.impl.CustomerDaoImpl;
 
 import java.io.IOException;
 import java.sql.*;
@@ -42,7 +41,7 @@ public class CustomerFormController {
     public TreeTableColumn colOption;
     public JFXTreeTableView<CustomerTm> tblCustomer;
     public TreeTableColumn colCustAddress;
-    public CustomerModel customerModel = new CustomerModelImpl();
+    public CustomerDao customerDao = new CustomerDaoImpl();
 
 
     public void initialize(){
@@ -119,7 +118,7 @@ public class CustomerFormController {
 
     private void deleteItem(String id) {
         try {
-            Boolean isDeleted = customerModel.deleteCustomer(id);
+            Boolean isDeleted = customerDao.deleteCustomer(id);
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Customer deleted successfully").show();
                 loadCustomerTable();
@@ -144,7 +143,7 @@ public class CustomerFormController {
 
     public void saveButtonOnAction(ActionEvent actionEvent) {
         try {
-            Boolean isSaved = customerModel.saveCustomer( new CustomerDto(
+            Boolean isSaved = customerDao.saveCustomer( new CustomerDto(
                     txtId.getText()
                     ,txtCustName.getText()
                     , txtCustAddress.getText()
@@ -168,7 +167,7 @@ public class CustomerFormController {
 
         try {
 
-            Boolean isUpdated = customerModel.updateCustomer( new CustomerDto(
+            Boolean isUpdated = customerDao.updateCustomer( new CustomerDto(
                             txtId.getText()
                             ,txtCustName.getText()
                             , txtCustAddress.getText()
