@@ -4,30 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c915eaa9-2071-4e4d-bf4a-99dce793ed0f" name="Changes" comment="Initiate converting project from MVC to layered architecture - completed Dao layer for customer Form">
-      <change afterPath="$PROJECT_DIR$/src/main/java/bo/BoFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/CustomerBo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/ItemBo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/OrderBo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/impl/CustomerBoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/impl/ItemBoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/impl/OrderBoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DaoFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/util/BoType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/util/CrudUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/util/DaoType.java" afterDir="false" />
+    <list default="true" id="c915eaa9-2071-4e4d-bf4a-99dce793ed0f" name="Changes" comment="Layered architecture applied to Item and Place order Form as well">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/util/HibernateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bo/SuperBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bo/SuperBo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CustomerFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CustomerFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ItemFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ItemFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PlaceOrderFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PlaceOrderFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/ItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/ItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDetailsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDetailsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/CustomerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/CustomerDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/ItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/ItemDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDetailsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDetailsDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Item.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +53,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;E:/Java - 104 batch/Java FX/Java FX projects/POS System MVC architecture/POS System MVC/src/main/java/org/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -125,6 +112,8 @@
       <workItem from="1703684719299" duration="3078000" />
       <workItem from="1703729227122" duration="592000" />
       <workItem from="1703732207867" duration="21011000" />
+      <workItem from="1703816052343" duration="3465000" />
+      <workItem from="1703824460444" duration="2694000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -158,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703729778937</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Layered architecture applied to Item and Place order Form as well">
+      <option name="closed" value="true" />
+      <created>1703816191501</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703816191502</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +177,8 @@
     <MESSAGE value="DashBoardForm and CustomerForm implementation" />
     <MESSAGE value="Item Form and Place Order Form Completion" />
     <MESSAGE value="Initiate converting project from MVC to layered architecture - completed Dao layer for customer Form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initiate converting project from MVC to layered architecture - completed Dao layer for customer Form" />
+    <MESSAGE value="Layered architecture applied to Item and Place order Form as well" />
+    <option name="LAST_COMMIT_MESSAGE" value="Layered architecture applied to Item and Place order Form as well" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -189,6 +187,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/AppInitializer.java</url>
           <line>7</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/entity/Customer.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

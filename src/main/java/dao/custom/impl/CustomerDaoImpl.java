@@ -1,10 +1,13 @@
 package dao.custom.impl;
 
 import dao.util.CrudUtil;
-import db.DBConnection;
 import dto.CustomerDto;
 import dao.custom.CustomerDao;
 import entity.Customer;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,7 +93,21 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public boolean save(Customer entity) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO customer VALUES(?,?,?,?)";
+
+        Configuration configuration=new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Customer.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(entity);
+        transaction.commit();
+        session.close();
+        return true;
+
+
+        //String sql = "INSERT INTO customer VALUES(?,?,?,?)";
 
 
 //        PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
@@ -99,12 +116,33 @@ public class CustomerDaoImpl implements CustomerDao {
 //        pstm.setString(3,entity.getAddress());
 //        pstm.setDouble(4,entity.getSalary());
 //        return pstm.executeUpdate()>0;
-        return CrudUtil.execute(sql,entity.getId(),entity.getName(),entity.getAddress(),entity.getSalary());
+        //return CrudUtil.execute(sql,entity.getId(),entity.getName(),entity.getAddress(),entity.getSalary());
+
+
+
     }
 
     @Override
     public boolean update(Customer entity) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE customer SET name =?, address=?, salary=? WHERE id=?";
+
+        Configuration configuration=new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Customer.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Customer customer = session.find(Customer.class,entity.getId());
+        customer.setName(entity.getName());
+        customer.setAddress(entity.getAddress());
+        customer.setSalary(entity.getSalary());
+        session.save(customer);
+        transaction.commit();
+        session.close();
+        return true;
+
+
+        //String sql = "UPDATE customer SET name =?, address=?, salary=? WHERE id=?";
 //        PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
 //        pstm.setString(1,entity.getName());
 //        pstm.setString(2,entity.getAddress());
@@ -112,17 +150,31 @@ public class CustomerDaoImpl implements CustomerDao {
 //        pstm.setString(4,entity.getId());
 //        return pstm.executeUpdate()>0;
 
-        return CrudUtil.execute(sql,entity.getName(),entity.getAddress(),entity.getSalary(),entity.getId());
+        //return CrudUtil.execute(sql,entity.getName(),entity.getAddress(),entity.getSalary(),entity.getId());
     }
 
     @Override
     public boolean delete(String value) throws SQLException, ClassNotFoundException {
-        String sql = "DELETE FROM customer WHERE id=?";
+
+        Configuration configuration=new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Customer.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(session.find(Customer.class,value));
+        transaction.commit();
+        return true;
+
+
+
+        //String sql = "DELETE FROM customer WHERE id=?";
 //        PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
 //        pstm.setString(1,value);
 //        return pstm.executeUpdate()>0;
 
-        return CrudUtil.execute(sql,value);
+        //return CrudUtil.execute(sql,value);
     }
 
     @Override
