@@ -1,7 +1,15 @@
 package controller;
 
+import bo.BoFactory;
+import bo.custom.CustomerBo;
+import bo.custom.ItemBo;
+import bo.custom.OrderBo;
+import bo.custom.impl.CustomerBoImpl;
+import bo.custom.impl.ItemBoImpl;
+import bo.custom.impl.OrderBoImpl;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import dao.util.BoType;
 import dto.CustomerDto;
 import dto.OrderDetailDto;
 import dto.OrderDto;
@@ -49,7 +57,7 @@ public class PlaceOrderFormController {
     public Label lblOrderId;
     public Label lblTotal;
 
-    private OrderDao orderDao = new OrderDaoImpl();
+    //private OrderDao orderDao = new OrderDaoImpl();
 
     private double total=0;
     private List<CustomerDto> customers;
@@ -57,8 +65,10 @@ public class PlaceOrderFormController {
 
     private ObservableList<OrderTm> tmList = FXCollections.observableArrayList();
 
-    private CustomerDao customerDao = new CustomerDaoImpl();
-    private ItemDao itemDao = new ItemDaoImpl();
+    private CustomerBo customerBo = BoFactory.getInstance().getBo(BoType.CUSTOMER);
+    private ItemBo itemBo= BoFactory.getInstance().getBo(BoType.ITEM);
+
+    private OrderBo orderBo = BoFactory.getInstance().getBo(BoType.ORDER);
 
     public void initialize(){
 
@@ -93,7 +103,7 @@ public class PlaceOrderFormController {
 
     private void loadItems() {
         try {
-            items = itemDao.allItems();
+            items = itemBo.allItems();
             ObservableList<String> list = FXCollections.observableArrayList();
             for (ItemDto dto: items) {
                 list.add(dto.getCode());
@@ -106,7 +116,7 @@ public class PlaceOrderFormController {
 
     private void loadCustomers() {
         try {
-            customers = customerDao.allCustomer();
+            customers = customerBo.allCustomer();
             ObservableList<String> list = FXCollections.observableArrayList();
             for (CustomerDto dto : customers) {
                 list.add(dto.getId());
@@ -119,15 +129,7 @@ public class PlaceOrderFormController {
 
     public void generateId(){
         try {
-            OrderDto dto = orderDao.lastOrder();
-            if(dto!=null){
-                String lastOrderId = dto.getOrderId();
-                int number = Integer.parseInt(lastOrderId.split("[D]")[1]);
-                lblOrderId.setText(String.format("D%03d",++number));
-            }
-            else{
-                lblOrderId.setText("D001");
-            }
+            lblOrderId.setText(orderBo.generateId());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -135,7 +137,7 @@ public class PlaceOrderFormController {
 
     public void addToCartOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
-        double amount = itemDao.getItem(cmbItemCode.getValue().toString()).getUnitPrice()*Integer.parseInt(txtQtyOnHand.getText());
+        double amount = itemBo.getItem(cmbItemCode.getValue().toString()).getUnitPrice()*Integer.parseInt(txtQtyOnHand.getText());
         JFXButton btn = new JFXButton("Delete");
         OrderTm orderTm = new OrderTm(
                 cmbItemCode.getValue().toString(),
@@ -183,7 +185,7 @@ public class PlaceOrderFormController {
             ));
         }
         if(! tmList.isEmpty()){
-            boolean isSaved = orderDao.saveOrder(new OrderDto(
+            boolean isSaved = orderBo.saveOrder(new OrderDto(
                             lblOrderId.getText(),
                             LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd")),
                             cmbCustId.getValue().toString(),

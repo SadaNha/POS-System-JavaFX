@@ -1,10 +1,14 @@
 package controller;
 
+import bo.BoFactory;
+import bo.custom.ItemBo;
+import bo.custom.impl.ItemBoImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import dao.util.BoType;
 import db.DBConnection;
 import dto.ItemDto;
 import dto.tm.ItemTm;
@@ -37,7 +41,7 @@ public class ItemFormController {
     public JFXTextField txtQtyOnHand;
     public JFXTreeTableView<ItemTm> tblItem;
 
-    public ItemDao itemDao = new ItemDaoImpl();
+    public ItemBo itemBo = BoFactory.getInstance().getBo(BoType.ITEM);
     public TreeTableColumn colItemCode;
     public JFXTextField txtItemSearch;
     public TreeTableColumn colItemUnitPrice;
@@ -118,7 +122,7 @@ public class ItemFormController {
     private void deleteItem(String code) {
 
         try {
-                boolean isDeleted = itemDao.deleteItem(code);
+                boolean isDeleted = itemBo.deleteItem(code);
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Item deleted successfully").show();
                 loadItemTable();
@@ -142,7 +146,7 @@ public class ItemFormController {
 
     public void saveButtonOnAction(ActionEvent actionEvent) {
         try {
-                boolean isSaved = itemDao.saveItem(new ItemDto(
+                boolean isSaved = itemBo.saveItem(new ItemDto(
                     txtCode.getText()
                     ,txtDesc.getText()
                     ,Double.parseDouble(txtUnitPrice.getText())
@@ -161,7 +165,7 @@ public class ItemFormController {
 
     public void updateButtonOnAction(ActionEvent actionEvent) {
         try {
-                boolean isUpdated = itemDao.updateItem(new ItemDto(
+                boolean isUpdated = itemBo.updateItem(new ItemDto(
                     txtCode.getText()
                     ,txtDesc.getText()
                     ,Double.parseDouble(txtUnitPrice.getText())

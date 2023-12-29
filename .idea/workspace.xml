@@ -4,25 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c915eaa9-2071-4e4d-bf4a-99dce793ed0f" name="Changes" comment="Item Form and Place Order Form Completion">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/CrudDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/SuperDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/OrderDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Orders.java" afterDir="false" />
+    <list default="true" id="c915eaa9-2071-4e4d-bf4a-99dce793ed0f" name="Changes" comment="Initiate converting project from MVC to layered architecture - completed Dao layer for customer Form">
+      <change afterPath="$PROJECT_DIR$/src/main/java/bo/BoFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/CustomerBo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/ItemBo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/OrderBo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/impl/CustomerBoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/impl/ItemBoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bo/custom/impl/OrderBoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DaoFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/util/BoType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/util/CrudUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/util/DaoType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bo/SuperBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bo/SuperBo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/CustomerFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CustomerFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/ItemFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ItemFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/PlaceOrderFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PlaceOrderFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CustomerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ItemModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/ItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderDetailsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDetailsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/impl/CustomerModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/CustomerDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/impl/ItemModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/ItemDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/impl/OrderDetailsDtoModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDetailsDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/impl/OrderModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/ItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/ItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDetailsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/OrderDetailsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/CustomerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/CustomerDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/ItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/ItemDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDetailsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/OrderDetailsDaoImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +38,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
+        <option value="Enum" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -117,6 +123,8 @@
       <workItem from="1703133513454" duration="2324000" />
       <workItem from="1703388842297" duration="4259000" />
       <workItem from="1703684719299" duration="3078000" />
+      <workItem from="1703729227122" duration="592000" />
+      <workItem from="1703732207867" duration="21011000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -142,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703394534548</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Initiate converting project from MVC to layered architecture - completed Dao layer for customer Form">
+      <option name="closed" value="true" />
+      <created>1703729778937</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703729778937</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +179,8 @@
     <MESSAGE value="First Commit" />
     <MESSAGE value="DashBoardForm and CustomerForm implementation" />
     <MESSAGE value="Item Form and Place Order Form Completion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Item Form and Place Order Form Completion" />
+    <MESSAGE value="Initiate converting project from MVC to layered architecture - completed Dao layer for customer Form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initiate converting project from MVC to layered architecture - completed Dao layer for customer Form" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

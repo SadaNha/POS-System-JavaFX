@@ -3,6 +3,7 @@ package dao.custom.impl;
 import db.DBConnection;
 import dto.OrderDetailDto;
 import dao.custom.OrderDetailsDao;
+import entity.OrderDetail;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -26,4 +27,5 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
         }
         return isDetailsSaved;
     }
+
 }

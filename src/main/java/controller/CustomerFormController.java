@@ -1,10 +1,14 @@
 package controller;
 
+import bo.BoFactory;
+import bo.custom.CustomerBo;
+import bo.custom.impl.CustomerBoImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import dao.util.BoType;
 import db.DBConnection;
 import dto.CustomerDto;
 import dto.tm.CustomerTm;
@@ -41,7 +45,7 @@ public class CustomerFormController {
     public TreeTableColumn colOption;
     public JFXTreeTableView<CustomerTm> tblCustomer;
     public TreeTableColumn colCustAddress;
-    public CustomerDao customerDao = new CustomerDaoImpl();
+    public CustomerBo customerBo = BoFactory.getInstance().getBo(BoType.CUSTOMER);
 
 
     public void initialize(){
@@ -118,7 +122,7 @@ public class CustomerFormController {
 
     private void deleteItem(String id) {
         try {
-            Boolean isDeleted = customerDao.deleteCustomer(id);
+            Boolean isDeleted = customerBo.deleteCustomer(id);
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Customer deleted successfully").show();
                 loadCustomerTable();
@@ -143,7 +147,7 @@ public class CustomerFormController {
 
     public void saveButtonOnAction(ActionEvent actionEvent) {
         try {
-            Boolean isSaved = customerDao.saveCustomer( new CustomerDto(
+            Boolean isSaved = customerBo.saveCustomer( new CustomerDto(
                     txtId.getText()
                     ,txtCustName.getText()
                     , txtCustAddress.getText()
@@ -167,7 +171,7 @@ public class CustomerFormController {
 
         try {
 
-            Boolean isUpdated = customerDao.updateCustomer( new CustomerDto(
+            Boolean isUpdated = customerBo.updateCustomer( new CustomerDto(
                             txtId.getText()
                             ,txtCustName.getText()
                             , txtCustAddress.getText()
